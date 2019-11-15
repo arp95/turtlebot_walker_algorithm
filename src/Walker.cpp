@@ -53,7 +53,7 @@ Walker::Walker(ros::NodeHandle node) {
     // ROS Publisher
     ros::Publisher velocityPublisher = node.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
 
-    ros::Rate loopRate(5);
+    ros::Rate loopRate(4);
     while(ros::ok()) {
         // Declare and initialize twist
         geometry_msgs::Twist twist;
@@ -64,12 +64,12 @@ Walker::Walker(ros::NodeHandle node) {
         twist.angular.y = 0.0;
         twist.angular.z = 0.0;
 
-        if(distance > 0.8) {
+        if(distance > 0.77) {
             ROS_INFO_STREAM("Moving Forward!");
-            twist.linear.x = 2.0;
+            twist.linear.x = 0.12;
         } else {
             ROS_INFO_STREAM("Rotating!");
-            twist.angular.z = 2.0;
+            twist.angular.z = 1.7;
         }
         velocityPublisher.publish(twist);
         ros::spinOnce();

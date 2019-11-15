@@ -39,12 +39,20 @@
 
 class Walker {
     public:
+      /**
+       * @brief      Constructs the Walker object.
+       * @param      node  ros::NodeHandle.
+      */
       Walker(ros::NodeHandle node);
 
+      /**
+       * @brief      Callback for subscriber.
+       * @param      data  sensor_msgs::LaserScan::ConstPtr.
+      */
       void callback(const sensor_msgs::LaserScan::ConstPtr& data);
-
+    
     private:
-      // Variable to store distance
+      // Variable to store distance.
       double distance; 
 };
 #endif  // CATKIN_WS_SRC_TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_HPP_
