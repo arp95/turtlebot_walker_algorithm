@@ -38,8 +38,8 @@
 
 void Walker::callback(const sensor_msgs::LaserScan::ConstPtr& data) {
     double minDistance = 0.2;
-    for(int i = 0; i < data->ranges.size(); i++) {
-        if(data->ranges[i] > minDistance) {
+    for (int i = 0; i < data->ranges.size(); i++) {
+        if (data->ranges[i] > minDistance) {
             minDistance = data->ranges[i];
         }
     }
@@ -48,13 +48,15 @@ void Walker::callback(const sensor_msgs::LaserScan::ConstPtr& data) {
 
 Walker::Walker(ros::NodeHandle node) {
     // ROS LaserScan Subscriber
-    ros::Subscriber laserSubscriber = node.subscribe("/scan", 1000, &Walker::callback, this);
+    ros::Subscriber laserSubscriber =
+node.subscribe("/scan", 1000, &Walker::callback, this);
 
     // ROS Publisher
-    ros::Publisher velocityPublisher = node.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
+    ros::Publisher velocityPublisher =
+node.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
 
     ros::Rate loopRate(4);
-    while(ros::ok()) {
+    while (ros::ok()) {
         // Declare and initialize twist
         geometry_msgs::Twist twist;
         twist.linear.x = 0.0;
@@ -64,7 +66,7 @@ Walker::Walker(ros::NodeHandle node) {
         twist.angular.y = 0.0;
         twist.angular.z = 0.0;
 
-        if(distance > 0.77) {
+        if (distance > 0.77) {
             ROS_INFO_STREAM("Moving Forward!");
             twist.linear.x = 0.12;
         } else {

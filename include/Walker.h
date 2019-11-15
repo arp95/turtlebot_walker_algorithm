@@ -30,29 +30,28 @@
  *@brief      Header file for Walker class.
  */
 
-#ifndef CATKIN_WS_SRC_TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_HPP_
-#define CATKIN_WS_SRC_TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_HPP_
+#ifndef TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_H_
+#define TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_H_
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include <sensor_msgs/LaserScan.h>
 
 class Walker {
-    public:
-      /**
+ public:
+     /**
        * @brief      Constructs the Walker object.
        * @param      node  ros::NodeHandle.
-      */
-      Walker(ros::NodeHandle node);
+     */
+     explicit Walker(ros::NodeHandle node);
 
-      /**
-       * @brief      Callback for subscriber.
-       * @param      data  sensor_msgs::LaserScan::ConstPtr.
-      */
-      void callback(const sensor_msgs::LaserScan::ConstPtr& data);
-    
-    private:
-      // Variable to store distance.
-      double distance; 
+     /**
+      * @brief      Callback for subscriber.
+      * @param      data  sensor_msgs::LaserScan::ConstPtr.
+     */
+     void callback(const sensor_msgs::LaserScan::ConstPtr& data);
+ private:
+     // Variable to store distance.
+     double distance;
 };
-#endif  // CATKIN_WS_SRC_TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_HPP_
+#endif  // TURTLEBOT_WALKER_ALGORITHM_INCLUDE_WALKER_H_
