@@ -46,3 +46,26 @@ cd catkin_ws
 source devel/setup.bash
 roslaunch turtlebot_walker_algorithm turtlebot_walker_algorithm.launch record:=false
 ```
+
+
+## Print information in a bag file
+1. Terminal 1:
+```
+cd catkin_ws
+source devel/setup.bash
+cd src/turtlebot_walker_algorithm/results/
+rosbag info turtlebot_walker_algorithm.bag
+```
+
+## Playing a rosbag file
+1. Terminal 1 (run master node):
+```
+roscore
+```
+
+2. Terminal 2 (play rosbag):
+```
+cd catkin_ws
+source devel/setup.bash
+rosbag play src/turtlebot_walker_algorithm/results/turtlebot_walker_algorithm.bag
+```
